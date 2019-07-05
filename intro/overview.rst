@@ -32,9 +32,9 @@ Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应�
 
         def parse_question(self, response):
             yield {
-                'title': response.css('h1 a::text').extract()[0],
-                'votes': response.css('.question .vote-count-post::text').extract()[0],
-                'body': response.css('.question .post-text').extract()[0],
+                'title': response.css('h1 a::text').extract_first(),
+                'votes': response.css('.question .votecell .js-vote-count::text').extract_first(),
+                'body': response.css('.question .post-text').extract_first(),
                 'tags': response.css('.question .post-tag::text').extract(),
                 'link': response.url,
             }
